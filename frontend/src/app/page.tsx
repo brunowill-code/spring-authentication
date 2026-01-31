@@ -14,11 +14,11 @@ export default function Login() {
 	const { logar, cadastrar, usuario } = useAutenticacao();
 	const router = useRouter();
 
-	useEffect(() => {
-		if (usuario) {
-			router.push("/produtos");
-		}
-	}, [usuario]);
+	// useEffect(() => {
+	// 	if (usuario) {
+	// 		router.push("/produtos");
+	// 	}
+	// }, [usuario]);
 
 	return (
 		<div

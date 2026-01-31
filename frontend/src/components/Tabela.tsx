@@ -42,16 +42,16 @@ export function Tabela() {
 				})}
 			>
 				<td className="p-4">{item.id}</td>
-				<td className="p-4 font-semibold">{item.nome}</td>
-				<td className="p-4">{item.descricao}</td>
+				<td className="p-4 font-semibold">{item.name}</td>
+				<td className="p-4">{item.description}</td>
 				<td className="p-4">
-					<Tag texto={item.categoria} />
+					<Tag texto={item.category} />
 				</td>
 				<td className="p-4">
-					{new Date(item.inseridoEm).toLocaleDateString()}
+					{new Date(item.insert_on).toLocaleDateString()}
 				</td>
 				<td className="p-4 text-emerald-500 font-semibold">
-					R$ {item.preco.toFixed(2).replace(".", ",")}
+					R$ {item.price.toFixed(2).replace(".", ",")}
 				</td>
 				<td className="p-4">{item.idUsuario}</td>
 				<td>

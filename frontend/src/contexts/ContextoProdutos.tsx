@@ -28,7 +28,7 @@ export const ProdutosProvider: React.FC<{ children: ReactNode }> = ({
 
 	useEffect(() => {
 		(async function carregar() {
-			if (!usuario) return;
+			//if (!usuario) return;
 			setCarregando(true);
 			try {
 				await obterTodos();

@@ -9,15 +9,15 @@ export default function ({ children }: any) {
 	const { usuario, carregando } = useAutenticacao();
 	const router = useRouter();
 
-	useEffect(() => {
-		if (!usuario && !carregando) {
-			router.push("/");
-		}
-	}, [usuario, carregando]);
-
 	if (carregando) {
 		return <Loader />;
 	}
+
+	// useEffect(() => {
+	// 	if (!usuario && !carregando) {
+	// 		router.push("/");
+	// 	}
+	// }, [usuario, carregando]);
 
 	return (
 		<div className="bg-gray-50  min-h-screen">
