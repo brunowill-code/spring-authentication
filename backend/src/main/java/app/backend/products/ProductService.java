@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import app.backend.exceptions.ProductNotFound;
 import app.backend.products.dto.ProductDTO;
+import jakarta.validation.Valid;
 
 
 @Service
@@ -21,7 +22,7 @@ public class ProductService {
 		List<ProductDTO> produtos = productRepository.findAll()
 	            .stream()
 	            .map(ProductDTO::fromModel)
-	            .toList(); // Java 16+
+	            .toList();
 
 	    System.out.println(produtos);
 
@@ -38,5 +39,27 @@ public class ProductService {
 	public ProductDTO addProduct(ProductDTO obj) {
 		ProductModel p = productRepository.save(obj.toModel());
 		return ProductDTO.fromModel(p);
+	}
+
+	public ProductDTO updateProduct(@Valid ProductDTO obj, Integer id) {
+		if(!productRepository.existsById(id)) {
+			throw new ProductNotFound();
+		}
+		
+		ProductModel toUpdate = productRepository.getReferenceById(id);
+		update(toUpdate, obj);
+		ProductModel saved = productRepository.save(toUpdate);
+		return ProductDTO.fromModel(saved);
+		
+	}
+
+
+	private void update(ProductModel toUpdate, @Valid ProductDTO obj) {
+		
+		toUpdate.setNome(obj.getNome());
+		toUpdate.setDescricao(obj.getDescricao());
+		toUpdate.setCategoria(obj.getCategoria());
+		toUpdate.setPreco(obj.getPreco());
+		
 	}
 }

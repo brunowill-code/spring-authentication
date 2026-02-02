@@ -63,11 +63,6 @@ public class ProductDTO {
 		return p;
 	}
 	
-	@Override
-	public String toString() {
-		return "ProductDTO [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
-				+ ", categoria=" + categoria + ", inseridoEm=" + inseridoEm + ", idUsuario=" + idUsuario + "]";
-	}
 
 	public static ProductDTO fromModel(ProductModel p) {
 		ProductDTO pDTO = new ProductDTO(
@@ -135,22 +130,20 @@ public class ProductDTO {
 	}
 	
 	 @JsonProperty("id")
-	    @JsonInclude(JsonInclude.Include.NON_NULL)
-	    public Integer getIdValue() {
-	        return id != null ? id.orElse(null) : null;
-	    }
+	 @JsonInclude(JsonInclude.Include.NON_NULL)
+	 public Integer getIdValue() {
+		 return id != null ? id.orElse(null) : null;
+	 }
 
-	    @JsonProperty("inseridoEm")
-	    @JsonInclude(JsonInclude.Include.NON_NULL)
-	    public Date getInseridoEmValue() {
-	        return inseridoEm != null ? inseridoEm.orElse(null) : null;
-	    }
+	 @JsonProperty("inseridoEm")
+	 @JsonInclude(JsonInclude.Include.NON_NULL)
+	 public Date getInseridoEmValue() {
+		 return inseridoEm != null ? inseridoEm.orElse(null) : null;
+	 }
 
-	    @JsonProperty("idUsuario")
-	    @JsonInclude(JsonInclude.Include.NON_NULL)
-	    public Integer getIdUsuarioValue() {
-	        return idUsuario != null ? idUsuario.orElse(null) : null;
-	    }
-	
-	
+	 @JsonProperty("idUsuario")
+	 @JsonInclude(JsonInclude.Include.NON_NULL)
+	 public Integer getIdUsuarioValue() {
+		 return idUsuario != null ? idUsuario.orElse(null) : null;
+	 }
 }
