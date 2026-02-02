@@ -17,6 +17,12 @@ import jakarta.persistence.Table;
 @Table(name="product")
 public class ProductModel {
 	
+	@Override
+	public String toString() {
+		return "ProductModel [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
+				+ ", inserido_em=" + inserido_em + ", id_usuario=" + id_usuario + ", categoria=" + categoria + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	

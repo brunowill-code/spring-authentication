@@ -17,15 +17,21 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	public List<ProductModel> getall() {
-		System.out.println(productRepository.findAll());
-		 return productRepository.findAll();
-		
+	public List<ProductDTO> getall() {
+		List<ProductDTO> produtos = productRepository.findAll()
+	            .stream()
+	            .map(ProductDTO::fromModel)
+	            .toList(); // Java 16+
+
+	    System.out.println(produtos);
+
+	    return produtos;
 	}
 
-	public ProductModel getById(Integer id) {
-		Optional<ProductModel> prod = productRepository.findById(id);
-		return prod.orElseThrow(() -> new ProductNotFound());
+	public ProductDTO getById(Integer id) {
+		return productRepository.findById(id)
+	            .map(ProductDTO::fromModel)
+	            .orElseThrow(ProductNotFound::new);
 		
 	}
 

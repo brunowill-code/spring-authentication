@@ -23,19 +23,18 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping
-	public ResponseEntity<List<ProductModel>> getAll(){
-		List<ProductModel> prods = productService.getall();
-		
+	public ResponseEntity<List<ProductDTO>> getAll(){
+		List<ProductDTO> prods = productService.getall();
 		return ResponseEntity.ok().body(prods);
 	}
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<ProductModel> getById(@PathVariable Integer id){
-		ProductModel prod = productService.getById(id);
+	public ResponseEntity<ProductDTO> getById(@PathVariable Integer id){
+		ProductDTO prod = productService.getById(id);
 		return ResponseEntity.ok().body(prod);
 
 	}
-	//aplica as validações antes de criar o produto
+	//aplica as validações antes de criar o produto!
 	@PostMapping
 	public ResponseEntity<ProductDTO> addProduct(@Valid @RequestBody ProductDTO obj){
 		ProductDTO pdto = productService.addProduct(obj);
