@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.backend.products.dto.ProductDTO;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("produtos")
@@ -34,9 +35,9 @@ public class ProductController {
 		return ResponseEntity.ok().body(prod);
 
 	}
-	
+	//aplica as validações antes de criar o produto
 	@PostMapping
-	public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO obj){
+	public ResponseEntity<ProductDTO> addProduct(@Valid @RequestBody ProductDTO obj){
 		ProductDTO pdto = productService.addProduct(obj);
 		return ResponseEntity.ok().body(pdto);
 		

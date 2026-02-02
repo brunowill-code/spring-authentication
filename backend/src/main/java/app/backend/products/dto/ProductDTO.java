@@ -5,12 +5,26 @@ import java.util.Locale.Category;
 
 import app.backend.products.ProductCategory;
 import app.backend.products.ProductModel;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
-
+	
+	@NotBlank(message = "Nome é obrigatório")
+	@Size(min = 3, max = 100, message ="Nome deve ter entre 3 e 100 caracteres")
 	private String nome;
+	
+	@NotBlank(message = "Descrição é obrigatório")
+	@Size(max = 255, message ="Descrição deve ter no máximo 255 caracteres")
 	private String descricao;
+	
+	@NotNull(message = "Preço é obrigatório")
+	@Positive(message = "Preço deve ser positivo")
 	private Double preco;
+	
+	@NotNull(message = "Categoria é obrigatório")
 	private ProductCategory categoria;
 	
 	public ProductModel toModel() {
