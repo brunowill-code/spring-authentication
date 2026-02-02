@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.backend.exceptions.ProductNotFound;
+import app.backend.products.dto.ProductDTO;
 
 
 @Service
@@ -26,5 +27,10 @@ public class ProductService {
 		Optional<ProductModel> prod = productRepository.findById(id);
 		return prod.orElseThrow(() -> new ProductNotFound());
 		
+	}
+
+	public ProductDTO addProduct(ProductDTO obj) {
+		ProductModel p = productRepository.save(obj.toModel());
+		return ProductDTO.fromModel(p);
 	}
 }
