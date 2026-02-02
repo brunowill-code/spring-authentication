@@ -1,3 +1,14 @@
+CREATE TABLE usuarios(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
+	senha VARCHAR(50) NOT NULL
+);
+
+INSERT INTO usuarios(id, nome, email, senha) VALUES
+(1, 'Ana Silva', 'ana@gmail.com', '123'),
+(2,'Paulo Souza', 'paulo@gmail,com','123');
+
 CREATE TABLE product(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	nome varchar(100) NOT NULL,
