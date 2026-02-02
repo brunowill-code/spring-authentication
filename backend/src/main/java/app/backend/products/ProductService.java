@@ -62,4 +62,11 @@ public class ProductService {
 		toUpdate.setPreco(obj.getPreco());
 		
 	}
+
+	public ProductDTO deleteProduct(Integer id) {
+		ProductDTO product = getById(id);
+		productRepository.deleteById(id);
+		return product;
+		
+	}
 }
