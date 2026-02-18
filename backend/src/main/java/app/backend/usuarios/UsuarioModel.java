@@ -17,7 +17,7 @@ public class UsuarioModel {
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
 	
-	@Column(name = "email", nullable = false, length = 50)
+	@Column(name = "email", nullable = false, length = 50, unique = true)
 	private String email;
 	
 	@Column(name = "senha", nullable = false, length = 50)

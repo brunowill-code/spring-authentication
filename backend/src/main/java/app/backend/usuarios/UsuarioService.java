@@ -19,7 +19,9 @@ public class UsuarioService {
 		this.usuarioRepository = usuarioRepository;
 	}
 	
+	
 	public List<UsuarioModel> getAll() {
+		System.out.println("usuarios" + usuarioRepository.findAll());
 		return usuarioRepository.findAll();
 	}
 

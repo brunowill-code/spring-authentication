@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/auth")
 public class UsuarioController {
 
-	private final UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 	
 	public UsuarioController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
@@ -29,7 +29,7 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usersList);
 	}
 	
-	@PostMapping(value="cadastrar")
+	@PostMapping(value="/cadastrar")
 	public ResponseEntity<UserRegisteredDTO> register(@Valid @RequestBody RegisterUserDTO newUser){  
 		UserRegisteredDTO userToSave = usuarioService.register(newUser);
 		return ResponseEntity.ok().body(userToSave);

@@ -1,0 +1,40 @@
+package app.backend.config;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		// conjunto de filtros que será aplicado na requisição para saber se ela é uma requisição válida ou não
+		http.cors(Customizer.withDefaults()); 
+		return http.build();
+	}
+	
+	
+	@Bean // spring annotation que indica que um metodo produz um bean gerenciado pelo spring
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowedOrigins(List.of("http://localhost:3000"));
+		config.setAllowedMethods(List.of("*"));
+		config.setAllowedHeaders(List.of("*"));
+		config.setAllowCredentials(true);
+		
+		UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
+		urlSource.registerCorsConfiguration("/**", config);
+		return urlSource;
+	}
+	
+}
