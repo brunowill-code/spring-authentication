@@ -3,6 +3,7 @@ package app.backend.usuarios;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import app.backend.exceptions.UserAlreadyExists;
@@ -14,9 +15,11 @@ import jakarta.validation.Valid;
 public class UsuarioService {
 
 	private final UsuarioRepository usuarioRepository;
+	private final PasswordEncoder passwordEncoder;
 	
-	public UsuarioService(UsuarioRepository usuarioRepository) {
+	public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder ) {
 		this.usuarioRepository = usuarioRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	
@@ -35,7 +38,7 @@ public class UsuarioService {
 		UsuarioModel userToSave = new UsuarioModel();
 		userToSave.setNome(newUser.getNome());
 		userToSave.setEmail(newUser.getEmail());
-		userToSave.setSenha(newUser.getSenha());
+		userToSave.setSenha(passwordEncoder.encode(newUser.getSenha()));
 		
 		usuarioRepository.save(userToSave);
 		
